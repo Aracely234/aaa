@@ -12,95 +12,218 @@ namespace Hospital
 {
     public partial class Form2 : Form
     {
-        public static double a,aa,bb,cc;
+        //Variables para volados y generador de numeros pseudoalatorios
+
+        public static double a;
         public static double c;
         public static double Xo;
         public static double M;
-        public static double n, modulo, m = 0, acumulador = 0, promedio, Zo;
-        public static double[] random = new double[100000];
-        public static int ad;
-        public static double redondeado;
-        int indice;
-        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-           
+        double n, modulo, m = 0, acumulador = 0, promedio, Zo;
 
+        private void PDistancia_Click(object sender, EventArgs e)
+        {
+            Pdistancia pd = new Pdistancia();
+            pd.tbA2.Text = tbA.Text;
+            pd.tbC2.Text = tbC.Text;
+            pd.tbM2.Text = tbM.Text;
+            pd.tbXo2.Text = tbXo.Text;
+            pd.tbn2.Text = tbn.Text;
+            pd.nn.Text = tbn.Text;
+            pd.Show();
         }
 
-       
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form1 f1 = new Form1();
+            f1.tbA2.Text = tbA.Text;
+            f1.tbC2.Text = tbC.Text;
+            f1.tbM2.Text = tbM.Text;
+            f1.tbXo2.Text = tbXo.Text;
+            f1.tbn2.Text = tbn.Text;
+            f1.Show();
+        }
+
+        private void tbA_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsSymbol(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsSurrogate(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsPunctuation(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void tbC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsSymbol(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsSurrogate(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsPunctuation(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void tbXo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsSymbol(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsSurrogate(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsPunctuation(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void tbM_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsSymbol(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsSurrogate(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsPunctuation(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void tbn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsSymbol(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsSurrogate(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsPunctuation(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-
-            a = 101;
-            c = 221;
-            Xo = 17;
-            M = 17001;
-            
-            indice = comboBox1.SelectedIndex;
-            if (indice == 0)
+            if (dataGridView1.RowCount > 1)
             {
-                //Sacar la moda
-                double.TryParse(tbnA.Text, out aa);
-                double.TryParse(tbnB.Text, out bb);
-                double.TryParse(tbnC.Text, out cc);
+                Pruebas pruebas = new Pruebas();
+                pruebas.lblpromedio2.Text = label6.Text;
+                pruebas.lbldisnor.Text = label7.Text;
+                pruebas.Show();
 
-                double ba = bb - aa;
-                double cb = cc - bb;
-                double ca = cc - aa;
-
-                double puntocambio = ba / ca;
-                pc.Text = puntocambio.ToString();
-                n = 30;
-                //generar numeros 
-                for (int i = 0; i < n; i++)
-                {
-                    modulo = (a * Xo + c) % M;
-                    random[i] = modulo / M;
-                    redondeado = (Math.Round(random[i], 5));
-
-                    ad = dataGridView1.Rows.Add();
-                    dataGridView1.Rows[ad].Cells[0].Value = (i + 1).ToString();
-                    dataGridView1.Rows[ad].Cells[1].Value = redondeado.ToString();
-                    if (redondeado <= puntocambio)
-                    {
-                        double x1 = (aa + Math.Sqrt(ba * ca * redondeado));
-                        double rex1 = Math.Round(x1, 0);
-                        dataGridView1.Rows[ad].Cells[2].Value = rex1.ToString();
-                    }
-                    if (redondeado >= puntocambio)
-                    {
-                        double x2 = (cc - Math.Sqrt(cb * ca * (1 - redondeado)));
-                        double rex2 = Math.Round(x2, 0);
-                        dataGridView1.Rows[ad].Cells[2].Value = rex2.ToString();
-                    }
-
-                    acumulador += random[i];
-
-                    m = modulo;
-                    Xo = m;
-
-
-                }
-                
-                
-                
             }
-            
-            
+            else
+            {
+                MessageBox.Show("No se pueden realizar las pruebas sin generar los números pseudoaleatorios.");
+            }
+
         }
 
-       
-
+        double[] random = new double[100000];
+        int ad;
 
         public Form2()
         {
             InitializeComponent();
         }
-       
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnNoPseudoalatorio_Click(object sender, EventArgs e)
         {
+            if (tbA.Text == "" || tbC.Text == "" || tbXo.Text == "" || tbM.Text == "" || tbn.Text == "")
+            {
+                MessageBox.Show("Revise que llenara los campos necesarios");
+            }
+            double.TryParse(tbA.Text, out a);
+            double.TryParse(tbC.Text, out c);
+            double.TryParse(tbXo.Text, out Xo);
+            double.TryParse(tbM.Text, out M);
+            double.TryParse(tbn.Text, out n);
+            //generar numeros 
+            for (int i = 0; i < n; i++)
+            {
+                modulo = (a * Xo + c) % M;
+                random[i] = modulo / M;
+                double redoneado = (Math.Round(random[i], 5));
+                ad = dataGridView1.Rows.Add();
+                dataGridView1.Rows[ad].Cells[0].Value = (i + 1).ToString();
+                dataGridView1.Rows[ad].Cells[1].Value = redoneado.ToString();
 
+                acumulador += random[i];
+
+                m = modulo;
+                Xo = m;
+
+
+            }
+
+            //obtenemos el promedio de los números pseodoaleatorios
+            promedio = acumulador / n;
+            label6.Text = (Math.Round(promedio, 5)).ToString();
+
+            //obtenemos la distribución normal
+            Zo = ((Math.Sqrt(n)) * (promedio - 0.5)) / (Math.Sqrt(0.083333333));
+            label7.Text = (Math.Round(Zo, 5)).ToString();
         }
     }
 }
